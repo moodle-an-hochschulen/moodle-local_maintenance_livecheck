@@ -18,6 +18,9 @@ define(['jquery', 'core/str'], function($, str) {
     // Global variable for maintenance announcement box content.
     var boxContent = null;
 
+    /**
+     * Function which performs the continuous live check.
+     */
     function checkStatus() {
         // Fetch maintenance mode status by AJAX.
         // We know about the benefits of the core/ajax module (https://docs.moodle.org/dev/AJAX),
@@ -27,7 +30,7 @@ define(['jquery', 'core/str'], function($, str) {
             dataType: 'json',
             success: function(result) {
                 // If CLI maintenance mode is not scheduled or active.
-                if (result['timeleftinsec'] === null) {
+                if (result.timeleftinsec === null) {
                     // Hide the maintenance announcement box.
                     hideBox();
 
@@ -38,19 +41,19 @@ define(['jquery', 'core/str'], function($, str) {
                     clearInterval(countdownInterval);
                 }
                 // Otherwise, if CLI maintenance mode is scheduled.
-                else if (result['timeleftinsec'] !== null && result['timeleftinsec'] > 0) {
+                else if (result.timeleftinsec !== null && result.timeleftinsec > 0) {
                     // Show the maintenance announcement box.
                     showBox();
 
                     // Store the left time globally.
-                    timeleftinsec = result['timeleftinsec'];
+                    timeleftinsec = result.timeleftinsec;
 
                     // Re-Start the countdown interval.
                     clearInterval(countdownInterval);
                     countdownInterval = setInterval(updateCountdown, 1000);
                 }
                 // Otherwise, if legacy maintenance mode is active.
-                else if (result['timeleftinsec'] !== null && result['timeleftinsec'] == 0) {
+                else if (result.timeleftinsec !== null && result.timeleftinsec == 0) {
                     // Show the maintenance announcement box.
                     showBox();
 
@@ -79,6 +82,9 @@ define(['jquery', 'core/str'], function($, str) {
         });
     }
 
+    /**
+     * Function which shows the maintenance announcement box.
+     */
     function showBox() {
         // If maintenance announcement box does not have content already.
         if (boxContent === null) {
@@ -88,6 +94,9 @@ define(['jquery', 'core/str'], function($, str) {
         }
     }
 
+    /**
+     * Function which hides the maintenance announcement box.
+     */
     function hideBox() {
         // If maintenance announcement box still has content.
         if (boxContent !== null) {
@@ -97,10 +106,12 @@ define(['jquery', 'core/str'], function($, str) {
         }
     }
 
+    /**
+     * This function fetches the necessary strings once and caches them locally in the browser.
+     * This is needed because we won't be able to get the sitemaintenance string anymore from the server as soon as
+     * maintenance mode has started.
+     */
     function cacheStrings() {
-        // This function fetches the necessary strings once and caches them locally in the browser.
-        // This is needed because we won't be able to get the sitemaintenance string anymore from the server as soon as
-        // maintenance mode has started.
         str.get_strings([
                 {key: 'sitemaintenance', component: 'admin'},
                 {key: 'maintenancemodeisscheduled', component: 'admin'},
@@ -108,6 +119,9 @@ define(['jquery', 'core/str'], function($, str) {
             ]);
     }
 
+    /**
+     * Function to update the countdown in the maintenance announcement box.
+     */
     function updateCountdown() {
         // Reduce left time globally.
         timeleftinsec -= 1;
@@ -153,7 +167,9 @@ define(['jquery', 'core/str'], function($, str) {
                 // If a back off time is set.
                 if (params.backoff !== null && params.backoff > 0) {
                     // Wait params.backoff seconds and then check status every params.checkinterval seconds.
-                    setTimeout(function(){setInterval(checkStatus, params.checkinterval * 1000);}, params.backoff * 1000);
+                    setTimeout(function() {
+                            setInterval(checkStatus, params.checkinterval * 1000);
+                        }, params.backoff * 1000);
                 }
                 // Otherwise if no back off time is set.
                 else {
