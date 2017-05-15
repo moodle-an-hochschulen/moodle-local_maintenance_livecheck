@@ -49,6 +49,7 @@ if ($hassiteconfig) {
                 get_string('setting_checkinterval_desc', 'local_maintenance_livecheck', null, true),
                 60,
                 $choices));
+        unset($choices);
 
         // Add advanced settings heading.
         $page->add(new admin_setting_heading('local_maintenance_livecheck/advancedsettingsheading',

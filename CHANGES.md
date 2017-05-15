@@ -4,6 +4,10 @@ moodle-local_maintenance_livecheck
 Changes
 -------
 
+### Unreleased
+
+* 2017-05-15 - Some very minor code improvements
+
 ### v3.2-r3
 
 * 2017-05-05 - Improve README.md
