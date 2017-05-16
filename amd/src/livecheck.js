@@ -159,11 +159,11 @@ define(['jquery', 'core/str'], function($, str) {
 
     return {
         init: function(params) {
-            // Add maintenance announcement box to page.
-            $('body').append('<div id="maintenance_announcement">');
-
             // Initialize continuous live check.
             if (params.checkinterval !== null && params.checkinterval > 0) {
+                // Add maintenance announcement box to page.
+                $('body').append('<div id="maintenance_announcement">');
+
                 // If a back off time is set.
                 if (params.backoff !== null && params.backoff > 0) {
                     // Wait params.backoff seconds and then check status every params.checkinterval seconds.
@@ -176,10 +176,10 @@ define(['jquery', 'core/str'], function($, str) {
                     // Check status every params.checkinterval seconds.
                     setInterval(checkStatus, params.checkinterval * 1000);
                 }
-            }
 
-            // Cache strings in browser.
-            cacheStrings();
+                // Cache strings in browser.
+                cacheStrings();
+            }
         }
     };
 });
