@@ -4,7 +4,7 @@ moodle-local_maintenance_livecheck
 Changes
 -------
 
-### Unreleased
+### v3.2-r4
 
 * 2017-05-16 - Handle cached answers of the AJAX request and try to prevent caching
 * 2017-05-16 - Restructure init function in JS
