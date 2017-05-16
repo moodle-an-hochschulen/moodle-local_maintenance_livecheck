@@ -6,6 +6,7 @@ Changes
 
 ### Unreleased
 
+* 2017-05-16 - Handle cached answers of the AJAX request
 * 2017-05-16 - Restructure init function in JS
 * 2017-05-15 - Some very minor code improvements
 

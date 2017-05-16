@@ -6,7 +6,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(['jquery', 'core/str'], function($, str) {
+define(['jquery', 'core/str', 'core/log'], function($, str, log) {
     "use strict";
 
     // Global variable for left time.
@@ -77,6 +77,20 @@ define(['jquery', 'core/str'], function($, str) {
                     // Stop the countdown and run it once to show the sitemaintenance message.
                     clearInterval(countdownInterval);
                     updateCountdown();
+                }
+                // The AJAX call was cached somewhere.
+                else if (request.status >= 300 && request.status <= 399) {
+                    // Warn the developer.
+                    log.debug('moodle-local_maintenance_livecheck-livecheck: A cached copy of the live check answer was returned so it\'s reliablity cannot be guaranteed. Hiding the maintenance announcement box now.');
+
+                    // Hide the maintenance announcement box.
+                    hideBox();
+
+                    // Clear the left time globally.
+                    timeleftinsec = null;
+
+                    // Stop the countdown interval.
+                    clearInterval(countdownInterval);
                 }
             }
         });
