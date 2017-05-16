@@ -191,8 +191,8 @@ define(['jquery', 'core/str', 'core/log'], function($, str, log) {
                 if (params.backoff !== null && params.backoff > 0) {
                     // Wait params.backoff seconds and then check status every params.checkinterval seconds.
                     setTimeout(function() {
-                            setInterval(checkStatus, params.checkinterval * 1000);
-                        }, params.backoff * 1000);
+                        setInterval(checkStatus, params.checkinterval * 1000);
+                    }, params.backoff * 1000);
                 }
                 // Otherwise if no back off time is set.
                 else {
