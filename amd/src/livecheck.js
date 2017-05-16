@@ -28,6 +28,15 @@ define(['jquery', 'core/str', 'core/log'], function($, str, log) {
         $.ajax({
             url: '/local/maintenance_livecheck/ajax.php',
             dataType: 'json',
+            type: 'POST',
+            data: {
+                // Add a query string to prevent older versions of IE from using the cache.
+                'time': $.now()
+            },
+            headers: {
+                'Cache-Control': 'no-cache',
+                'Expires': '-1'
+            },
             success: function(result) {
                 // If CLI maintenance mode is not scheduled or active.
                 if (result.timeleftinsec === null) {
