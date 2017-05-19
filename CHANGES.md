@@ -4,6 +4,10 @@ moodle-local_maintenance_livecheck
 Changes
 -------
 
+### Unreleased
+
+* 2017-05-19 - Bugfix: Plugin didn't work for Moodle installed in subdirectories - Credits to David Mudrák
+
 ### v3.2-r4
 
 * 2017-05-16 - Handle cached answers of the AJAX request and try to prevent caching

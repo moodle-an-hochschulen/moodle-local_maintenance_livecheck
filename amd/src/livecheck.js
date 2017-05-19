@@ -6,7 +6,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(['jquery', 'core/str', 'core/log'], function($, str, log) {
+define(['jquery', 'core/str', 'core/log', 'core/config'], function($, str, log, config) {
     "use strict";
 
     // Global variable for left time.
@@ -26,7 +26,7 @@ define(['jquery', 'core/str', 'core/log'], function($, str, log) {
         // We know about the benefits of the core/ajax module (https://docs.moodle.org/dev/AJAX),
         // but for this very lightweight check we only use a simple jQuery AJAX call.
         $.ajax({
-            url: '/local/maintenance_livecheck/ajax.php',
+            url: config.wwwroot + '/local/maintenance_livecheck/ajax.php',
             dataType: 'json',
             type: 'POST',
             data: {
