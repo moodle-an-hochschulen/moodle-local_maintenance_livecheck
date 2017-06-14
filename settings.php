@@ -68,7 +68,9 @@ if ($hassiteconfig) {
         // Create live check time control widgets.
         $days = array('sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday');
         foreach ($days as $day) {
-            $choices[$day] = get_string($day, 'calendar', null, false); // Don't use string lazy loading here because the string will be directly used and would produce a PHP warning otherwise.
+            $choices[$day] = get_string($day, 'calendar', null, false);
+                    // Don't use string lazy loading here because the string will be directly used and
+                    // would produce a PHP warning otherwise.
         }
         $page->add(new admin_setting_configmulticheckbox2('local_maintenance_livecheck/livecheckweekdays',
                 get_string('setting_livecheckweekdays', 'local_maintenance_livecheck', null, true),

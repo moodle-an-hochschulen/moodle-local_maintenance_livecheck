@@ -37,9 +37,9 @@ $result->timeleftinsec = null;
 if (isset($CFG->maintenance_later) and $CFG->maintenance_later > time()) {
     $timeleftinsec = $CFG->maintenance_later - time();
     $result->timeleftinsec = $timeleftinsec;
-}
-// Otherwise check if legacy maintenance mode is active.
-else if (isset($CFG->maintenance_enabled) and $CFG->maintenance_enabled == true) {
+
+    // Otherwise check if legacy maintenance mode is active.
+} else if (isset($CFG->maintenance_enabled) and $CFG->maintenance_enabled == true) {
     $result->timeleftinsec = 0;
 }
 
