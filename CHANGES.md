@@ -4,6 +4,10 @@ moodle-local_maintenance_livecheck
 Changes
 -------
 
+### Unreleased
+
+* 2017-05-29 - Add Travis CI support
+
 ### v3.2-r5
 
 * 2017-05-19 - Bugfix: Plugin didn't work for Moodle installed in subdirectories - Credits to David Mudrák
