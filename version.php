@@ -28,5 +28,5 @@ defined('MOODLE_INTERNAL') || die();
 $plugin->component = 'local_maintenance_livecheck';
 $plugin->version = 2017112400;
 $plugin->release = 'v3.3-r1';
-$plugin->requires = 2017051500;
+$plugin->requires = 2017111300;
 $plugin->maturity = MATURITY_STABLE;
