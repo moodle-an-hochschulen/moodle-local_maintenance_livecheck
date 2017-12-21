@@ -4,7 +4,7 @@ moodle-local_maintenance_livecheck
 Changes
 -------
 
-### Unreleased
+### v3.4-r1
 
 * 2017-12-21 - Check compatibility for Moodle 3.4, no functionality change.
 * 2017-12-05 - Added Workaround to travis.yml for fixing Behat tests with TravisCI.
