@@ -4,6 +4,10 @@ moodle-local_maintenance_livecheck
 Changes
 -------
 
+### Unreleased
+
+* 2018-05-16 - Implement Privacy API.
+
 ### v3.4-r1
 
 * 2017-12-21 - Check compatibility for Moodle 3.4, no functionality change.

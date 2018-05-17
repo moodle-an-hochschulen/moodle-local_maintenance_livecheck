@@ -26,6 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Maintenance mode (live check)';
+$string['privacy:metadata'] = 'The maintenance mode (live check) plugin provides extended functionality to Moodle users, but does not store any personal data.';
 $string['setting_advancedsettingsheading'] = 'Advanced settings';
 $string['setting_backoff'] = 'Live check back off time';
 $string['setting_backoff_desc'] = 'With this setting, you can set a back off time (in seconds) in which the users\' browsers will not perform any check yet. It can be used to reduce the load on the server side and is best described with an example: If you always schedule the maintenance mode with 10 minutes lead time and have set the live check interval to 60 seconds, you could set the live check back off time to 120 seconds. The users\' browsers will then perform the first live check 180 seconds after page load. Thus, the users will be notified 7 minutes before maintenance mode is started in the worst case which should be enough for most scenarios.';
