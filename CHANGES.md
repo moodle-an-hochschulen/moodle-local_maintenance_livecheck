@@ -6,7 +6,7 @@ Changes
 
 ### v3.5-r1
 
-*2018-05-29 - Check compatibility for Moodle 3.5, no functionality change.
+* 2018-05-29 - Check compatibility for Moodle 3.5, no functionality change.
 
 ### v3.4-r2
 
