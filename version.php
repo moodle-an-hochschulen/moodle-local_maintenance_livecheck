@@ -26,7 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_maintenance_livecheck';
-$plugin->version = 2018052900;
-$plugin->release = 'v3.5-r1';
+$plugin->version = 2019012100;
+$plugin->release = 'v3.6-r1';
 $plugin->requires = 2018120300;
 $plugin->maturity = MATURITY_STABLE;
