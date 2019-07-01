@@ -4,6 +4,10 @@ moodle-local_maintenance_livecheck
 Changes
 -------
 
+### Unreleased
+
+* 2019-07-01 - Prepare compatibility for Moodle 3.7.
+
 ### v3.6-r1
 
 * 2019-01-21 - Check compatibility for Moodle 3.6, no functionality change.
