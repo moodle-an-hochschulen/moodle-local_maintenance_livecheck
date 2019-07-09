@@ -4,7 +4,7 @@ moodle-local_maintenance_livecheck
 Changes
 -------
 
-### Unreleased
+### v3.7-r1
 
 * 2019-07-02 - Added automated behat tests.
 * 2019-07-01 - Prepare compatibility for Moodle 3.7.
