@@ -1,7 +1,7 @@
 moodle-local_maintenance_livecheck
 =====================================
 
-[![Build Status](https://travis-ci.com/moodleuulm/moodle-local_maintenance_livecheck.svg?branch=master)](https://travis-ci.com/moodleuulm/moodle-local_maintenance_livecheck)
+[![Moodle Plugin CI](https://github.com/moodleuulm/moodle-local_maintenance_livecheck/workflows/Moodle%20Plugin%20CI/badge.svg?branch=master)](https://github.com/moodleuulm/moodle-local_maintenance_livecheck/actions?query=workflow%3A%22Moodle+Plugin+CI%22+branch%3Amaster)
 
 Moodle plugin which shows the Moodle maintenance announcement even if there is no full page load
 
