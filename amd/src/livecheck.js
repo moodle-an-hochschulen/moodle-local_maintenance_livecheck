@@ -1,7 +1,7 @@
 /**
  * Local plugin "Maintenance mode (live check)" - JS Code
  *
- * @package   local_maintenance_livecheck
+ * @module   local_maintenance_livecheck/livecheck
  * @copyright 2017 Alexander Bias, University of Ulm <alexander.bias@uni-ulm.de>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
