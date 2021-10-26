@@ -9,7 +9,7 @@ Moodle plugin which shows the Moodle maintenance announcement even if there is n
 Requirements
 ------------
 
-This plugin requires Moodle 3.10+
+This plugin requires Moodle 3.11+
 
 
 Motivation for this plugin
