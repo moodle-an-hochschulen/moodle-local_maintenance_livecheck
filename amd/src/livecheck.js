@@ -25,7 +25,8 @@ define(['jquery', 'core/str', 'core/log', 'core/config'], function($, str, log, 
         // If maintenance announcement box does not have content already.
         if (boxContent === null) {
             // Create the maintenance announcement box content and save it globally.
-            $('#maintenance_announcement').append('<div class="box moodle-has-zindex maintenancewarning m-a-1 alert">');
+            $('#maintenance_announcement').append('<div class="box moodle-has-zindex maintenancewarning m-3 alert"' +
+                    'aria-live="polite">');
             boxContent = $('.box.maintenancewarning');
         }
     }

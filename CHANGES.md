@@ -6,6 +6,7 @@ Changes
 
 ### Unreleased
 
+* 2021-10-27 - Adapt the maintenance window to the look & feel of Moodle core again
 * 2021-02-05 - Move Moodle Plugin CI from Travis CI to Github actions
 
 ### v3.9-r2
