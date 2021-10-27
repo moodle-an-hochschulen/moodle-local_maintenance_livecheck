@@ -4,6 +4,10 @@ moodle-local_maintenance_livecheck
 Changes
 -------
 
+### Unreleased
+
+* 2021-10-27 - Adapt the maintenance window to the look & feel of Moodle core again
+
 ### v3.11-r1
 
 * 2021-10-26 - Prepare compatibility for Moodle 3.11
