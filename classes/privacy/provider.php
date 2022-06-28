@@ -24,8 +24,6 @@
 
 namespace local_maintenance_livecheck\privacy;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Privacy Subsystem implementing null_provider.
  *
