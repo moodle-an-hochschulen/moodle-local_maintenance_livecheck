@@ -27,4 +27,9 @@ Manual tests
 ------------
 
 * There aren't any manual tests needed to upgrade this plugin.
-* However, it might be advisable to have a quick look at the maintenance banner in the Moodle GUI as Moodle themes might influence the look of the banner.
+
+
+Visual checks
+-------------
+
+* It might be advisable to have a quick look at the maintenance banner in the Moodle GUI as Moodle themes might influence the look of the banner.
