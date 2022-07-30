@@ -6,6 +6,7 @@ Changes
 
 ### Unreleased
 
+* 2022-07-12 - Slightly adapt the look of the banner to Moodle 4.0.
 * 2022-07-12 - $.now() is deprecated, replace with Date.now()
 * 2022-07-12 - Prepare compatibility for Moodle 4.0.
 
