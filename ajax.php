@@ -38,12 +38,12 @@ $result = new stdClass();
 $result->timeleftinsec = null;
 
 // Check if CLI maintenance mode is scheduled.
-if (isset($CFG->maintenance_later) and $CFG->maintenance_later > time()) {
+if (isset($CFG->maintenance_later) && $CFG->maintenance_later > time()) {
     $timeleftinsec = $CFG->maintenance_later - time();
     $result->timeleftinsec = $timeleftinsec;
 
     // Otherwise check if legacy maintenance mode is active.
-} else if (isset($CFG->maintenance_enabled) and $CFG->maintenance_enabled == true) {
+} else if (isset($CFG->maintenance_enabled) && $CFG->maintenance_enabled == true) {
     $result->timeleftinsec = 0;
 }
 
