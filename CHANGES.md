@@ -4,7 +4,7 @@ moodle-local_maintenance_livecheck
 Changes
 -------
 
-### Unreleased
+### v3.10-r5
 
 * 2022-07-30 - Make codechecker happy again
 
