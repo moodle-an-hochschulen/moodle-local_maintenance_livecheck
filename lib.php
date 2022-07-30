@@ -42,7 +42,7 @@ function local_maintenance_livecheck_extend_navigation(global_navigation $naviga
 
         // Do only if maintenance mode has not been scheduled yet, because otherwise Moodle core will
         // output the announcement itself on page load and we then don't need to do any live check anymore.
-        if (!(isset($CFG->maintenance_later) and $CFG->maintenance_later > time())) {
+        if (!(isset($CFG->maintenance_later) && $CFG->maintenance_later > time())) {
 
             // Do only if the live check is configured to be run on any weekday and if the live check times are configured.
             if (isset($config->livecheckweekdays) && strpos($config->livecheckweekdays, "1") !== false &&
