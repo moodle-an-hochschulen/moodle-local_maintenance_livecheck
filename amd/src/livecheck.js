@@ -107,7 +107,7 @@ define(['jquery', 'core/str', 'core/log', 'core/config'], function($, str, log, 
             type: 'POST',
             data: {
                 // Add a query string to prevent older versions of IE from using the cache.
-                'time': $.now()
+                'time': Date.now()
             },
             headers: {
                 'Cache-Control': 'no-cache',
