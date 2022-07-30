@@ -4,7 +4,7 @@ moodle-local_maintenance_livecheck
 Changes
 -------
 
-### Unreleased
+### v4.0-r1
 
 * 2022-07-12 - Slightly adapt the look of the banner to Moodle 4.0.
 * 2022-07-12 - $.now() is deprecated, replace with Date.now()
