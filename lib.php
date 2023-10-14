@@ -67,7 +67,7 @@ function local_maintenance_livecheck_extend_navigation(global_navigation $naviga
 
                         // Insert the necessary JS code to the page.
                         $jsoptions = ['checkinterval' => $config->checkinterval,
-                                'backoff' => $config->backoff];
+                                'backoff' => $config->backoff, ];
                         $PAGE->requires->js_call_amd('local_maintenance_livecheck/livecheck', 'init', [$jsoptions]);
                     }
                 }

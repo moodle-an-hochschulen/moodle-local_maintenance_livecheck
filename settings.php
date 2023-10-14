@@ -43,7 +43,7 @@ if ($hassiteconfig) {
                 0));
 
         // Create check interval control widget.
-        $choices = array(10 => 10, 30 => 30, 60 => 60, 90 => 90, 120 => 120, 180 => 180, 240 => 240, 300 => 300);
+        $choices = [10 => 10, 30 => 30, 60 => 60, 90 => 90, 120 => 120, 180 => 180, 240 => 240, 300 => 300];
         $page->add(new admin_setting_configselect('local_maintenance_livecheck/checkinterval',
                 get_string('setting_checkinterval', 'local_maintenance_livecheck', null, true),
                 get_string('setting_checkinterval_desc', 'local_maintenance_livecheck', null, true),
@@ -57,7 +57,7 @@ if ($hassiteconfig) {
                 ''));
 
         // Create back off control widget.
-        $choices = array(0 => 0, 10 => 10, 30 => 30, 60 => 60, 90 => 90, 120 => 120, 180 => 180, 240 => 240, 300 => 300);
+        $choices = [0 => 0, 10 => 10, 30 => 30, 60 => 60, 90 => 90, 120 => 120, 180 => 180, 240 => 240, 300 => 300];
         $page->add(new admin_setting_configselect('local_maintenance_livecheck/backoff',
                 get_string('setting_backoff', 'local_maintenance_livecheck', null, true),
                 get_string('setting_backoff_desc', 'local_maintenance_livecheck', null, true),
@@ -66,7 +66,7 @@ if ($hassiteconfig) {
         unset($choices);
 
         // Create live check time control widgets.
-        $days = array('sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday');
+        $days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
         foreach ($days as $day) {
             $choices[$day] = get_string($day, 'calendar', null, false);
                     // Don't use string lazy loading here because the string will be directly used and
@@ -82,12 +82,12 @@ if ($hassiteconfig) {
                 'livecheckstartmin',
                 get_string('setting_livecheckstart', 'local_maintenance_livecheck', null, true),
                 '',
-                array('h' => 0, 'm' => 0)));
+                ['h' => 0, 'm' => 0]));
         $page->add(new admin_setting_configtime('local_maintenance_livecheck/livecheckend',
                 'livecheckendmin',
                 get_string('setting_livecheckend', 'local_maintenance_livecheck', null, true),
                 get_string('setting_livecheckend_desc', 'local_maintenance_livecheck', null, true),
-                array('h' => 0, 'm' => 0)));
+                ['h' => 0, 'm' => 0]));
     }
 
     // Add settings page to navigation tree.
