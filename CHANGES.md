@@ -4,7 +4,7 @@ moodle-local_maintenance_livecheck
 Changes
 -------
 
-### Unreleased
+### v4.5-r1
 
 * 2024-10-07 - Prepare compatibility for Moodle 4.5.
 
