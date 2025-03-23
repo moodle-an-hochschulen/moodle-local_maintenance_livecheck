@@ -1,7 +1,7 @@
 moodle-local_maintenance_livecheck
 ==================================
 
-[![Moodle Plugin CI](https://github.com/moodle-an-hochschulen/moodle-local_MOODLE_405_STABLEtenance_livecheck/workflows/Moodle%20Plugin%20CI/badge.svg?branch=MOODLE_405_STABLE)](https://github.com/moodle-an-hochschulen/moodle-local_MOODLE_405_STABLEtenance_livecheck/actions?query=workflow%3A%22Moodle+Plugin+CI%22+branch%3AMOODLE_405_STABLE)
+[![Moodle Plugin CI](https://github.com/moodle-an-hochschulen/moodle-local_MOODLE_405_STABLEtenance_livecheck/actions/workflows/moodle-plugin-ci.yml/badge.svg?branch=MOODLE_405_STABLE)](https://github.com/moodle-an-hochschulen/moodle-local_MOODLE_405_STABLEtenance_livecheck/actions?query=workflow%3A%22Moodle+Plugin+CI%22+branch%3AMOODLE_405_STABLE)
 
 Moodle plugin which shows the Moodle maintenance announcement even if there is no full page load
 
