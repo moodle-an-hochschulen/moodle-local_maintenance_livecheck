@@ -4,6 +4,10 @@ moodle-local_maintenance_livecheck
 Changes
 -------
 
+### Unreleased
+
+* 2025-04-14 - Prepare compatibility for Moodle 5.0.
+
 ### v4.5-r2
 
 * 2025-05-11 - Improvement: Adopt upstream change of the maintenance banner appearance from Moodle core in MDL-81655, resolves #5
