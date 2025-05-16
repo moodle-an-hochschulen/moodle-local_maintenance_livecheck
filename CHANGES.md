@@ -4,6 +4,10 @@ moodle-local_maintenance_livecheck
 Changes
 -------
 
+### Unreleased
+
+* 2025-05-11 - Improvement: Adopt upstream change of the maintenance banner appearance from Moodle core in MDL-81655, resolves #5
+
 ### v4.4-r1
 
 * 2024-08-24 - Development: Rename master branch to main, please update your clones.
