@@ -36,18 +36,19 @@ function local_maintenance_livecheck_extend_navigation(global_navigation $naviga
     // Check if the plugin's functionality is enabled.
     // We have to check explicitely if the configurations are set because this function will already be
     // called at installation time and would then throw PHP notices otherwise.
-    if (isset($config->enable) && $config->enable == true &&
-            isset($config->checkinterval) && $config->checkinterval > 0) {
-
+    if (
+        isset($config->enable) && $config->enable == true &&
+            isset($config->checkinterval) && $config->checkinterval > 0
+    ) {
         // Do only if maintenance mode has not been scheduled yet, because otherwise Moodle core will
         // output the announcement itself on page load and we then don't need to do any live check anymore.
         if (!(isset($CFG->maintenance_later) && $CFG->maintenance_later > time())) {
-
             // Do only if the live check is configured to be run on any weekday and if the live check times are configured.
-            if (isset($config->livecheckweekdays) && strpos($config->livecheckweekdays, "1") !== false &&
+            if (
+                isset($config->livecheckweekdays) && strpos($config->livecheckweekdays, "1") !== false &&
                     isset($config->livecheckstart) && isset($config->livecheckstartmin) &&
-                    isset($config->livecheckend) && isset($config->livecheckendmin)) {
-
+                    isset($config->livecheckend) && isset($config->livecheckendmin)
+            ) {
                 // Get the time according to the server timezone.
                 $now = time();
                 $date = usergetdate($now);
@@ -55,15 +56,23 @@ function local_maintenance_livecheck_extend_navigation(global_navigation $naviga
                 // Do only if the current server day is a configured live check day.
                 $livechecktoday = substr($config->livecheckweekdays, $date['wday'], 1);
                 if ($livechecktoday == 1) {
-
                     // Do only if live check start time == live check end time (which is the meaning for the whole day) or
                     // if the current server time is within the configured live check times.
-                    $livecheckstart = make_timestamp($date['year'], $date['mon'], $date['mday'],
-                            $config->livecheckstart, $config->livecheckstartmin);
-                    $livecheckend = make_timestamp($date['year'], $date['mon'], $date['mday'],
-                            $config->livecheckend, $config->livecheckendmin);
+                    $livecheckstart = make_timestamp(
+                        $date['year'],
+                        $date['mon'],
+                        $date['mday'],
+                        $config->livecheckstart,
+                        $config->livecheckstartmin
+                    );
+                    $livecheckend = make_timestamp(
+                        $date['year'],
+                        $date['mon'],
+                        $date['mday'],
+                        $config->livecheckend,
+                        $config->livecheckendmin
+                    );
                     if (($livecheckstart == $livecheckend) || ($now >= $livecheckstart && $now <= $livecheckend)) {
-
                         // Insert the necessary JS code to the page.
                         $jsoptions = ['checkinterval' => $config->checkinterval,
                                 'backoff' => $config->backoff, ];
