@@ -14,7 +14,8 @@ General
 Upstream changes
 ----------------
 
-* This plugin does not inherit or copy anything from upstream sources.
+* This plugin does not inherit any code from upstream sources.
+* However, the maintenance announcement box which is built in amd/src/livecheck.js mimics the markup, CSS classes and strings of the maintenance announcement box which is rendered by Moodle core in core_renderer::maintenance_warning(). Thus, it should be checked if this core function has been changed in the new Moodle major version and, if yes, the changes should be adopted in amd/src/livecheck.js.
 
 
 Automated tests
