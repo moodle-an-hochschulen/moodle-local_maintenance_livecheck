@@ -90,7 +90,7 @@ define(['jquery', 'core/str', 'core/log', 'core/config'], function($, str, log, 
         if (timeleftinsec < 30) {
             boxContent.addClass('alert-error').addClass('alert-danger').removeClass('alert-warning');
         } else {
-            boxContent.addClass('alert-warning').removeClass('alert-error').removeClass('alert-error');
+            boxContent.addClass('alert-warning').removeClass('alert-error').removeClass('alert-danger');
         }
     }
 
