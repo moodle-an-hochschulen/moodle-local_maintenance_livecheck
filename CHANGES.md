@@ -4,6 +4,10 @@ moodle-local_maintenance_livecheck
 Changes
 -------
 
+### Unreleased
+
+* 2026-10-19 - Bugfix: The maintenance announcement box kept the alert-danger class when the countdown went back above 30 seconds, resolves #8.
+
 ### v4.5-r3
 
 * 2025-10-15 - Make codechecker happy again
