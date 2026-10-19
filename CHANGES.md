@@ -4,7 +4,7 @@ moodle-local_maintenance_livecheck
 Changes
 -------
 
-### Unreleased
+### v5.0-r3
 
 * 2026-10-19 - Bugfix: The maintenance announcement box kept the alert-danger class when the countdown went back above 30 seconds, resolves #8.
 
