@@ -69,7 +69,9 @@ This plugin does not add any additional scheduled tasks.
 How this plugin works
 ---------------------
 
-The functionality of this plugin is achieved by abusing the *_extend_navigation() hook which allows plugin developers to extend Moodle's global navigation tree at runtime, but can also be abused to insert HTML code to each Moodle page. Please note that due to the way this plugin is built, the maintenance announcement is shown on as much Moodle pages as possible, but not on really all Moodle pages - for example, a SCORM activity instance opened in a new window will never show the maintenance announcement.
+The functionality of this plugin is achieved by using Moodle core's before_footer_html_generation output hook which allows plugin developers to add JavaScript code to each Moodle page which is rendered with Moodle's standard page footer. Please note that due to the way this plugin is built, the maintenance announcement is shown on all Moodle pages which are rendered with Moodle's standard page footer (including pages with a minimal layout like a SCORM activity instance opened in a new window or the login page), but not on pages which are rendered without it.
+
+If a Moodle page is embedded into another Moodle page within an iframe (for example H5P content within an activity page), the maintenance announcement is only shown on the outer page.
 
 
 Theme support
