@@ -183,8 +183,37 @@ define(['jquery', 'core/str', 'core/log', 'core/config'], function($, str, log, 
         });
     }
 
+    /**
+     * Function which checks if this page is shown within an iframe on another page of this Moodle site,
+     * for example H5P content embedded into an activity page. In this case, the outer page runs the live check itself.
+     * Parent windows from another origin (for example an external LTI platform) can't be accessed and are ignored.
+     *
+     * @returns {boolean}
+     */
+    function isEmbeddedInMoodlePage() {
+        var currentWindow = window;
+        try {
+            while (currentWindow !== currentWindow.parent) {
+                currentWindow = currentWindow.parent;
+                if (currentWindow.M && currentWindow.M.cfg && currentWindow.M.cfg.wwwroot === config.wwwroot) {
+                    return true;
+                }
+            }
+        } catch (e) {
+            // The parent window is from another origin.
+            return false;
+        }
+        return false;
+    }
+
     return {
         init: function(params) {
+            // Do not run the live check within an iframe on another page of this Moodle site.
+            // Otherwise, the maintenance announcement box would be shown twice and the server would be polled twice.
+            if (isEmbeddedInMoodlePage()) {
+                return;
+            }
+
             // Initialize continuous live check.
             if (params.checkinterval !== null && params.checkinterval > 0) {
                 // Add maintenance announcement box to page.
