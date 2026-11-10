@@ -4,7 +4,7 @@ moodle-local_maintenance_livecheck
 Changes
 -------
 
-### Unreleased
+### v5.1-r3
 
 * 2026-10-30 - Improvement: Insert the live check JavaScript code with Moodle core's before_footer_html_generation output hook instead of abusing the *_extend_navigation() callback, so the maintenance announcement is also shown on pages which do not build the navigation, like the login page.
 * 2026-10-30 - Improvement: Do not run the live check a second time within an iframe if the parent Moodle page already runs it.
