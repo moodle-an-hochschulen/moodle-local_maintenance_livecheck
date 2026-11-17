@@ -83,6 +83,11 @@ class before_footer_html_generation {
                             $config->livecheckendmin
                         );
                         if (($livecheckstart == $livecheckend) || ($now >= $livecheckstart && $now <= $livecheckend)) {
+                            // If the back off time is not set yet (for any reason), fall back to the default (no back off time).
+                            if (!isset($config->backoff)) {
+                                $config->backoff = 0;
+                            }
+
                             // Insert the necessary JS code to the page.
                             $jsoptions = ['checkinterval' => $config->checkinterval,
                                     'backoff' => $config->backoff, ];

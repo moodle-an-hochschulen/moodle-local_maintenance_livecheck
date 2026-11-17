@@ -4,6 +4,10 @@ moodle-local_maintenance_livecheck
 Changes
 -------
 
+### Unreleased
+
+* 2026-11-17 - Improvement: Fall back to the default back off time if the back off setting is not set yet, instead of triggering a PHP warning.
+
 ### v5.0-r4
 
 * 2026-10-30 - Improvement: Insert the live check JavaScript code with Moodle core's before_footer_html_generation output hook instead of abusing the *_extend_navigation() callback, so the maintenance announcement is also shown on pages which do not build the navigation, like the login page.
