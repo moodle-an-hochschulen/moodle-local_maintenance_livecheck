@@ -24,6 +24,10 @@
 
 define('AJAX_SCRIPT', true);
 
+// Do not use a session for this script. The live check does not need anything from the user's session and
+// polling this script continuously must not keep the user's session alive beyond the configured session timeout.
+define('NO_MOODLE_COOKIES', true);
+
 // phpcs:disable moodle.Files.RequireLogin.Missing
 // Let codechecker ignore the next line because otherwise it would complain about a missing login check
 // after requiring config.php which is really not needed.
