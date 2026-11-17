@@ -6,6 +6,7 @@ Changes
 
 ### Unreleased
 
+* 2026-11-17 - Bugfix: The live check polling does not keep the user's session alive anymore. Up to now, the user's session did not time out as long as a Moodle page with a running live check was open in the browser, regardless of the configured session timeout.
 * 2026-11-17 - Improvement: Fall back to the default back off time if the back off setting is not set yet, instead of triggering a PHP warning.
 
 ### v5.2-r3
