@@ -24,6 +24,26 @@ Feature: Configuring the maintenance_livecheck plugin
     And I wait "15" seconds
     Then "#maintenance_announcement .maintenancewarning" "css_element" should exist
 
+  Scenario: Enable maintenance_livecheck and check that the live check does not keep the session alive
+    Given the following config values are set as admin:
+      | config                | value |
+      | sessiontimeout        | 120   |
+      | sessiontimeoutwarning | 60    |
+    And the following "users" exist:
+      | username |
+      | teacher1 |
+    And the following "courses" exist:
+      | fullname | shortname | format |
+      | Course 1 | C1        | topics |
+    And the following "course enrolments" exist:
+      | user     | course | role           |
+      | teacher1 | C1     | editingteacher |
+    When I log in as "teacher1"
+    And I am on site homepage
+    And I wait "150" seconds
+    And I am on "Course 1" course homepage
+    Then I should see "You are not logged in"
+
   Scenario: Enable maintenance_livecheck and check that the maintenance warning is also shown on pages with a popup layout
     Given the following "courses" exist:
       | fullname | shortname |
