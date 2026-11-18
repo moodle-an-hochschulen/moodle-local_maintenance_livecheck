@@ -88,6 +88,14 @@ class before_footer_html_generation {
                                 $config->backoff = 0;
                             }
 
+                            // Ship the strings which are needed for the maintenance announcement box with the page.
+                            // This is needed because the JS code won't be able to fetch the strings from the server
+                            // anymore as soon as CLI maintenance mode has started.
+                            $hook->renderer->get_page()->requires->strings_for_js(
+                                ['sitemaintenance', 'maintenancemodeisscheduled', 'maintenancemodeisscheduledlong'],
+                                'admin'
+                            );
+
                             // Insert the necessary JS code to the page.
                             $jsoptions = ['checkinterval' => $config->checkinterval,
                                     'backoff' => $config->backoff, ];
