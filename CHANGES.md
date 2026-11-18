@@ -6,6 +6,7 @@ Changes
 
 ### Unreleased
 
+* 2026-11-18 - Bugfix: Ship the strings of the maintenance announcement with the page instead of fetching them with a separate request after page load. Up to now, the maintenance announcement was shown as empty box if the CLI maintenance mode was started before this request had been answered.
 * 2026-11-17 - Bugfix: Detect an active CLI maintenance mode on sites which are served over HTTP/2 or HTTP/3 as well. Up to now, the maintenance announcement was not shown or not updated there if the CLI maintenance mode was enabled immediately, because these protocol versions do not transmit the HTTP reason phrase which the live check relied on.
 * 2026-11-17 - Bugfix: The live check polling does not keep the user's session alive anymore. Up to now, the user's session did not time out as long as a Moodle page with a running live check was open in the browser, regardless of the configured session timeout.
 * 2026-11-17 - Improvement: Fall back to the default back off time if the back off setting is not set yet, instead of triggering a PHP warning.
