@@ -51,7 +51,7 @@ And with the "Check interval" setting, you can set the interval (in seconds) in 
 
 With the "Back off time" setting, you can set a back off time (in seconds) in which the users' browsers will not perform any check yet. It can be used to reduce the load on the server side and is best described with an example: If you always schedule the maintenance mode with 10 minutes lead time and have set the live check interval to 60 seconds, you could set the live check back off time to 120 seconds. The users' browsers will then perform the first live check 180 seconds after page load. Thus, the users will be notified 7 minutes before maintenance mode is started in the worst case which should be enough for most scenarios.';
 
-And with the "Live check weekdays" and "Live check start/end time" settings, you can control the weekdays and the daytime when the live check should be performed. By default, the live check will be performed 24/7. However, if you are sure that you will never enable the maintenance mode on certain weekdays or daytimes, you can limit the live check weekdays and daytimes to save the load on the server side.
+And with the "Live check weekdays" and "Live check start/end time" settings, you can control the weekdays and the daytime when the live check should be performed. By default, the live check will be performed 24/7. However, if you are sure that you will never enable the maintenance mode on certain weekdays or daytimes, you can limit the live check weekdays and daytimes to save the load on the server side. If the end time is earlier than the start time, the time slot spans midnight and belongs to the weekday on which it starts.
 
 
 Capabilities
@@ -72,6 +72,37 @@ How this plugin works
 The functionality of this plugin is achieved by using Moodle core's before_footer_html_generation output hook which allows plugin developers to add JavaScript code to each Moodle page which is rendered with Moodle's standard page footer. Please note that due to the way this plugin is built, the maintenance announcement is shown on all Moodle pages which are rendered with Moodle's standard page footer (including pages with a minimal layout like a SCORM activity instance opened in a new window or the login page), but not on pages which are rendered without it.
 
 If a Moodle page is embedded into another Moodle page within an iframe (for example H5P content within an activity page), the maintenance announcement is only shown on the outer page.
+
+
+HTTP protocol versions
+----------------------
+
+A scheduled maintenance mode and the legacy maintenance mode (which is enabled in the GUI or with `--enableold`) are reported to the browser by this plugin itself. This works regardless of the HTTP protocol version.
+
+However, as soon as the CLI maintenance mode is active, Moodle core answers all requests, including the live check requests of this plugin, with a HTTP 503 response. The live check recognizes this response as active CLI maintenance mode by one of these two indicators which are sent by Moodle core:
+
+* The HTTP reason phrase `Moodle under maintenance`. This indicator only exists in HTTP/1.1 as HTTP/2 and HTTP/3 do not transmit reason phrases anymore.
+* The HTTP header `Retry-After: 300`. This indicator exists in all HTTP protocol versions. The value of 300 seconds is hardcoded in the Moodle core code and does not depend on any Moodle setting.
+
+The following table shows if the maintenance announcement works for the particular ways to enable the CLI maintenance mode with admin/cli/maintenance.php, depending on the HTTP protocol version which is used between the browser and the web server or reverse proxy:
+
+| Setup | `--enable` | `--enablelater` | `--enablelater`, followed by `--enable` before the countdown has ended |
+|-------|------------|-----------------|------------------------------------------------------------------------|
+| HTTP/1.1 | Works | Works | Works |
+| HTTP/2 | Works | Works | Works |
+| HTTP/3 | Works | Works | Works |
+| HTTP/1.1, with a reverse proxy which removes or overwrites the `Retry-After` header | Works | Works | Works |
+| HTTP/1.1, with a reverse proxy which replaces the reason phrase | Works | Works | Works |
+| HTTP/1.1, with a reverse proxy which removes or overwrites the `Retry-After` header and replaces the reason phrase | Does not work | Works | Works with delay |
+| HTTP/2 or HTTP/3, with a reverse proxy which removes or overwrites the `Retry-After` header | Does not work | Works | Works with delay |
+
+The table cells have these meanings:
+
+* Works: The maintenance announcement is shown and switches to the maintenance message as soon as the CLI maintenance mode is active. With `--enablelater`, the countdown is run by the browser and switches to the maintenance message on its own when it ends, without depending on one of the indicators.
+* Works with delay: The maintenance announcement keeps counting down to the originally scheduled time although the site is already in maintenance mode, and switches to the maintenance message only then.
+* Does not work: The maintenance announcement is not shown until the next full page load.
+
+Please note that the live check will also show the maintenance message if a component in front of Moodle answers a live check request with a HTTP 503 response and a `Retry-After: 300` header on its own, for example during an outage of the Moodle backend. The message will be removed again as soon as a live check request is answered by Moodle normally.
 
 
 Theme support

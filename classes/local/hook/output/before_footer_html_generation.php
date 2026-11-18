@@ -60,38 +60,81 @@ class before_footer_html_generation {
                         isset($config->livecheckend) && isset($config->livecheckendmin)
                 ) {
                     // Get the time according to the server timezone.
+                    // The timezone has to be passed explicitly as usergetdate() and make_timestamp() would use
+                    // the timezone of the current user otherwise.
+                    $servertz = \core_date::get_server_timezone();
                     $now = time();
-                    $date = usergetdate($now);
+                    $date = usergetdate($now, $servertz);
 
-                    // Do only if the current server day is a configured live check day.
-                    $livechecktoday = substr($config->livecheckweekdays, $date['wday'], 1);
-                    if ($livechecktoday == 1) {
-                        // Do only if live check start time == live check end time (which is the meaning for the whole day) or
+                    // Check if the current server day and the previous server day are configured live check days.
+                    $livechecktoday = substr($config->livecheckweekdays, $date['wday'], 1) == 1;
+                    $livecheckyesterday = substr($config->livecheckweekdays, ($date['wday'] + 6) % 7, 1) == 1;
+
+                    // Get the live check start time and the live check end time on the current server day.
+                    $livecheckstart = make_timestamp(
+                        $date['year'],
+                        $date['mon'],
+                        $date['mday'],
+                        $config->livecheckstart,
+                        $config->livecheckstartmin,
+                        0,
+                        $servertz
+                    );
+                    $livecheckend = make_timestamp(
+                        $date['year'],
+                        $date['mon'],
+                        $date['mday'],
+                        $config->livecheckend,
+                        $config->livecheckendmin,
+                        0,
+                        $servertz
+                    );
+
+                    // If live check start time == live check end time (which is the meaning for the whole day).
+                    if ($livecheckstart == $livecheckend) {
+                        // The live check is active if the current server day is a live check day.
+                        $livecheckactive = $livechecktoday;
+
+                        // Otherwise, if the live check start time is before the live check end time.
+                    } else if ($livecheckstart < $livecheckend) {
+                        // The live check is active if the current server day is a live check day and
                         // if the current server time is within the configured live check times.
-                        $livecheckstart = make_timestamp(
-                            $date['year'],
-                            $date['mon'],
-                            $date['mday'],
-                            $config->livecheckstart,
-                            $config->livecheckstartmin
-                        );
-                        $livecheckend = make_timestamp(
-                            $date['year'],
-                            $date['mon'],
-                            $date['mday'],
-                            $config->livecheckend,
-                            $config->livecheckendmin
-                        );
-                        if (($livecheckstart == $livecheckend) || ($now >= $livecheckstart && $now <= $livecheckend)) {
-                            // Insert the necessary JS code to the page.
-                            $jsoptions = ['checkinterval' => $config->checkinterval,
-                                    'backoff' => $config->backoff, ];
-                            $hook->renderer->get_page()->requires->js_call_amd(
-                                'local_maintenance_livecheck/livecheck',
-                                'init',
-                                [$jsoptions]
-                            );
+                        $livecheckactive = $livechecktoday && $now >= $livecheckstart && $now <= $livecheckend;
+
+                        // Otherwise, if the live check start time is after the live check end time
+                        // (which means that the live check time slot spans midnight).
+                    } else {
+                        // The live check time slot belongs to the day on which it starts.
+                        // Thus, the live check is active if the current server day is a live check day and the time slot
+                        // has started today, or if the previous server day is a live check day and the time slot which
+                        // started yesterday has not ended yet.
+                        $livecheckactive = ($livechecktoday && $now >= $livecheckstart) ||
+                                ($livecheckyesterday && $now <= $livecheckend);
+                    }
+
+                    // Do only if the live check is active now.
+                    if ($livecheckactive) {
+                        // If the back off time is not set yet (for any reason), fall back to the default (no back off time).
+                        if (!isset($config->backoff)) {
+                            $config->backoff = 0;
                         }
+
+                        // Ship the strings which are needed for the maintenance announcement box with the page.
+                        // This is needed because the JS code won't be able to fetch the strings from the server
+                        // anymore as soon as CLI maintenance mode has started.
+                        $hook->renderer->get_page()->requires->strings_for_js(
+                            ['sitemaintenance', 'maintenancemodeisscheduled', 'maintenancemodeisscheduledlong'],
+                            'admin'
+                        );
+
+                        // Insert the necessary JS code to the page.
+                        $jsoptions = ['checkinterval' => $config->checkinterval,
+                                'backoff' => $config->backoff, ];
+                        $hook->renderer->get_page()->requires->js_call_amd(
+                            'local_maintenance_livecheck/livecheck',
+                            'init',
+                            [$jsoptions]
+                        );
                     }
                 }
             }
