@@ -102,7 +102,9 @@ if ($hassiteconfig) {
             'local_maintenance_livecheck/livecheckend',
             'livecheckendmin',
             get_string('setting_livecheckend', 'local_maintenance_livecheck', null, true),
-            get_string('setting_livecheckend_desc', 'local_maintenance_livecheck', null, true),
+            get_string('setting_livecheckend_desc', 'local_maintenance_livecheck', null, true) .
+                '<br />' .
+                get_string('setting_livecheckmidnightnote', 'local_maintenance_livecheck', null, true),
             ['h' => 0, 'm' => 0]
         ));
     }
