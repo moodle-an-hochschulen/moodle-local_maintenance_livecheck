@@ -36,6 +36,7 @@ $string['setting_enable_desc'] = 'With this setting, you can enable the maintena
 $string['setting_generalfunctionalityheading'] = 'General functionality';
 $string['setting_livecheckend'] = 'Live check end time';
 $string['setting_livecheckend_desc'] = 'With these two settings, you can control the daytime (relating to server time) when the live check should be performed. If you set both settings to 0:00, the live check will be performed during the whole day which is also the default. However, if you are sure that you will always enable the maintenance mode only during a defined inspection window, you can limit the live check to this inspection window to save the load on the server side during the rest of the day.';
+$string['setting_livecheckmidnightnote'] = 'If the end time is earlier than the start time, the time slot spans midnight and ends on the next day. In this case, the whole time slot belongs to the weekday on which it starts: For example, a time slot from 22:00 to 2:00 with only Friday enabled as live check weekday is active from Friday 22:00 to Saturday 2:00.';
 $string['setting_livecheckstart'] = 'Live check start time';
 $string['setting_livecheckweekdays'] = 'Live check weekdays';
 $string['setting_livecheckweekdays_desc'] = 'With this setting, you can control the weekdays when the live check should be performed. By default, all weekdays are enabled. However, if you are sure that you will never enable the maintenance mode on weekends or certain working days, you can disable these weekdays to save the load on the server side on these days.';

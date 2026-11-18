@@ -51,7 +51,7 @@ And with the "Check interval" setting, you can set the interval (in seconds) in 
 
 With the "Back off time" setting, you can set a back off time (in seconds) in which the users' browsers will not perform any check yet. It can be used to reduce the load on the server side and is best described with an example: If you always schedule the maintenance mode with 10 minutes lead time and have set the live check interval to 60 seconds, you could set the live check back off time to 120 seconds. The users' browsers will then perform the first live check 180 seconds after page load. Thus, the users will be notified 7 minutes before maintenance mode is started in the worst case which should be enough for most scenarios.';
 
-And with the "Live check weekdays" and "Live check start/end time" settings, you can control the weekdays and the daytime when the live check should be performed. By default, the live check will be performed 24/7. However, if you are sure that you will never enable the maintenance mode on certain weekdays or daytimes, you can limit the live check weekdays and daytimes to save the load on the server side.
+And with the "Live check weekdays" and "Live check start/end time" settings, you can control the weekdays and the daytime when the live check should be performed. By default, the live check will be performed 24/7. However, if you are sure that you will never enable the maintenance mode on certain weekdays or daytimes, you can limit the live check weekdays and daytimes to save the load on the server side. If the end time is earlier than the start time, the time slot spans midnight and belongs to the weekday on which it starts.
 
 
 Capabilities
