@@ -16,6 +16,7 @@ Upstream changes
 
 * This plugin does not inherit any code from upstream sources.
 * However, the maintenance announcement box which is built in amd/src/livecheck.js mimics the markup, CSS classes and strings of the maintenance announcement box which is rendered by Moodle core in core_renderer::maintenance_warning(). Thus, it should be checked if this core function has been changed in the new Moodle major version and, if yes, the changes should be adopted in amd/src/livecheck.js.
+* In addition to that, amd/src/livecheck.js detects an active CLI maintenance mode by the HTTP response which Moodle core sends as soon as the climaintenance.html file exists: HTTP status 503 together with the reason phrase 'Moodle under maintenance' or the header 'Retry-After: 300'. These values are hardcoded in Moodle core in lib/setup.php (in the 'Detect CLI maintenance mode' block) and, identically, in print_maintenance_message() in lib/weblib.php. Thus, it should be checked if these two places have been changed in the new Moodle major version and, if yes, the changes should be adopted in amd/src/livecheck.js and in the 'HTTP protocol versions' section of README.md.
 
 
 Automated tests

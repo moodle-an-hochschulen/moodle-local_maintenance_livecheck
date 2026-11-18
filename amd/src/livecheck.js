@@ -152,7 +152,12 @@ define(['jquery', 'core/str', 'core/log', 'core/config'], function($, str, log, 
             },
             error: function(request) {
                 // If CLI maintenance mode is active.
-                if (request.status == 503 && request.statusText == 'Moodle under maintenance') {
+                // Moodle core announces this in lib/setup.php with a HTTP 503 status, the reason phrase
+                // 'Moodle under maintenance' and a 'Retry-After: 300' header.
+                // The reason phrase is only transmitted over HTTP/1.x as HTTP/2 and HTTP/3 do not have reason phrases anymore.
+                // Thus, we accept the Retry-After header as alternative indicator.
+                if (request.status == 503 && (request.statusText == 'Moodle under maintenance' ||
+                        request.getResponseHeader('Retry-After') == '300')) {
                     // Show the maintenance announcement box.
                     showBox();
 
