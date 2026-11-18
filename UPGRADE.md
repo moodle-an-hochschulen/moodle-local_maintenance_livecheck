@@ -23,6 +23,7 @@ Automated tests
 ---------------
 
 * The plugin has a good coverage with Behat tests which test all of the plugin's user stories.
+* In addition, there is a PHPUnit test which covers the evaluation of the live check weekdays and the live check time slot.
 
 
 Manual tests
