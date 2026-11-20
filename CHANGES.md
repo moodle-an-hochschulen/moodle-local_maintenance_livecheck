@@ -4,7 +4,7 @@ moodle-local_maintenance_livecheck
 Changes
 -------
 
-### Unreleased
+### v5.2-r4
 
 * 2026-11-18 - Bugfix: Support live check time slots which span midnight (i.e. where the end time is earlier than the start time). Up to now, the live check was silently never performed with such a configuration. Such a time slot belongs to the weekday on which it starts.
 * 2026-11-18 - Bugfix: Evaluate the configured live check weekdays and the live check time slot in the server timezone as documented, instead of in the timezone of the current user.
